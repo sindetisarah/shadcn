@@ -1,8 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { cn } from '@/lib/utils'
+import SideNavbar from '@/components/Sidebar'
 
-const inter = Inter({ subsets: ['latin'] })
+// One thing I loved about nextjs is the easy way to use google fonts
+// Yeey happy I got an already defined layout page for making work easier
+
+const inter = Inter({ subsets: ['latin'],weight:["400", "700"] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +21,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn('flex h-screen overflow-hidden bg-white text-black ',inter.className)}>
+        {/* Sidebar */}
+        {/* <p className='border-2'>Sidebar</p> */}
+        <SideNavbar/>
+
+        {/* mainpage */}
+        <div className='p-6 w-full'>{children}</div>
+        </body>
     </html>
   )
 }
